@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自販機アプリ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ⭐️最初の画面全体 -->
+  <div class="wrapper">
+    <!-- 自販機 -->
+    <div class="vending-machine">
+      <div class="inner-wrapper">
+        <div class="display">
+          <!-- ジュースリスト -->
+          <ul class="juices">
+            <!-- ジュース1 -->
+            <li class="juice">
+              <div class="can cola">
+                <div class="label cola-label">
+                  <!-- ⭐️ここにジュース1の名前を入れる -->
+                  <span class="label-name" id="juice1"></span>
+                </div>
+              </div>
+              <!-- ⭐️ここにジュース1の値段を入れる -->
+              <div class="price-tag" id="price1"></div>
+              <!-- ⭐️ジュース1の購入ボタン -->
+              <div class="juice-btn" id="juice-btn1"></div>
+            </li>
+            <!-- ジュース2 -->
+            <li class="juice">
+              <div class="can pocari">
+                <div class="label pocari-label">
+                  <!-- ⭐️ここにジュース2の名前を入れる -->
+                  <span class="label-name" id="juice2"></span>
+                </div>
+              </div>
+              <!-- ⭐️ここにジュース2の値段を入れる -->
+              <div class="price-tag" id="price2"></div>
+              <!-- ⭐️ジュース2の購入ボタン -->
+              <div class="juice-btn" id="juice-btn2"></div>
+            </li>
+            <!-- ジュース3 -->
+            <li class="juice">
+              <div class="can lemon">
+                <div class="label lemon-label">
+                  <!-- ⭐️ここにジュース3の名前を入れる -->
+                  <span class="label-name" id="juice3"></span>
+                </div>
+              </div>
+              <!-- ⭐️ここにジュース3の値段を入れる -->
+              <div class="price-tag" id="price3"></div>
+              <!-- ⭐️ジュース3の購入ボタン -->
+              <div class="juice-btn" id="juice-btn3"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="input">
+          <!-- ⭐️リセットボタン -->
+          <div class="reset-btn" id="reset-btn"></div>
+          <!-- お金投入口 -->
+          <div class="inlet-wrapper">
+            <div class="inlet"></div>
+          </div>
+        </div>
+        <div class="arrow-wrapper">
+          <div class="arrow"></div>
+        </div>
+        <!-- 投入金の表示 -->
+        <div class="input-price-wrapper">
+          <!-- ⭐️ここに投入金額を表示する -->
+          <div class="input-price" id="input-price"></div>
+        </div>
+        <!-- ジュース取り出し口 -->
+        <div class="outlet"></div>
+      </div>
+    </div>
+    <div>
+      <!-- コイン -->
+      <ul class="coins">
+        <!-- ⭐️小銭のボタン -->
+        <li><img src="../img/10en.png" alt="10円玉" class="coin" id="en10"></li>
+        <li><img src="../img/50en.png" alt="50円玉" class="coin" id="en50"></li>
+        <li><img src="../img/100en.png" alt="100円玉" class="coin" id="en100"></li>
+        <li><img src="../img/500en.png" alt="500円玉" class="coin" id="en500"></li>
+      </ul>
+    </div>
+  </div>
+  <!-- ⭐️購入後の画面全体 -->
+  <div class="wrapper2" style="display: none;">
+    <!-- ⭐️缶の見た目（ジュースのクラスをここに追加） -->
+    <div class="can wrapper2-can" id="wrapper2-can">
+      <!-- ⭐️缶ラベルの見た目（ジュースのラベルクラスをここに追加） -->
+      <div class="label" id="wrapper2-can-label">
+        <!-- ⭐️ジュースの名前をここに表示 -->
+        <span class="label-name" id="wrapper2-juice"></span>
+      </div>
+    </div>
+    <div class="center">
+      <div>
+        <!-- ⭐️お釣りをここに表示 -->
+        <span id="change"></span>
+      </div>
+    </div>
+    <div class="center mt-20">
+      <!-- ⭐️続けて買うボタン -->
+      <button id="next">続けて買う</button>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+  let balance = 0;
+  let juiceData = "";
+  const juices = [
+    {name: "コーラ", price: 100, class: "cola"},
+    {name: "ポカリ", price: 200, class: "pocari"},
+    {name: "レモン", price: 250, class: "lemon"}
+  ];
+  $("#juice1").html(juices[0].name);
+  $("#juice2").html(juices[1].name);
+  $("#juice3").html(juices[2].name);
+  $("#price1").html(juices[0].price);
+  $("#price2").html(juices[1].price);
+  $("#price3").html(juices[2].price);
+
+  $("#input-price").html(balance);
+
+  // コイン押した時
+  $("#en10").on("click", function(){
+    balance = balance + 10;
+    $("#input-price").html(balance);
+  });
+  $("#en50").on("click", function(){
+    balance = balance + 50;
+    $("#input-price").html(balance);
+  });
+  $("#en100").on("click", function(){
+    balance = balance + 100;
+    $("#input-price").html(balance);
+  });
+  $("#en500").on("click", function(){
+    balance = balance + 500;
+    $("#input-price").html(balance);
+  });
+  $("#reset-btn").on("click", function(){
+    balance = 0;
+    $("#input-price").html(balance);
+  });
+
+  // ジュースボタンを押した時
+  $("#juice-btn1").on("click", function(){
+    juiceData = juices[0]
+    buy(juiceData);
+  });
+  $("#juice-btn2").on("click", function(){
+    juiceData = juices[1]
+    buy(juiceData);
+  });
+  $("#juice-btn3").on("click", function(){
+    juiceData = juices[2]
+    buy(juiceData);
+  });
+
+  function buy(juiceData){
+    if(balance - juiceData.price >= 0){
+      $(".wrapper").fadeOut(1000);
+      $(".wrapper2").show();
+      $("#wrapper2-can").addClass(juiceData.class);
+      $("#wrapper2-can-label").addClass(juiceData.class + "-label");
+      $("#wrapper2-juice").html(juiceData.name);
+      balance = balance - juiceData.price;
+      $("#change").html("お釣り：" + balance + "円");
+    } else {
+      $("#input-price").html("お金が足りません");
+      setTimeout(function(){
+        $("#input-price").html(balance);
+      },2000); 
+    }
+  }
+
+  // 続けて買うボタンを押した時
+  $("#next").on("click", function(){
+    $(".wrapper2").hide();
+    $(".wrapper").fadeIn(1000);
+    $("#wrapper2-can").removeClass(juiceData.class);
+    $("#wrapper2-can-label").removeClass(juiceData.class + "-label");
+    $("#input-price").html(balance);
+  });
+
+</script>
+</html>

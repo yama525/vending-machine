@@ -1,0 +1,225 @@
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+
+.vending-machine{
+  width: 250px;
+  height: 400px;
+  background-color: rgb(237, 83, 83);
+  border-radius: 10px 10px 0 0;
+  margin: 0 auto;
+}
+
+.inner-wrapper{
+  padding: 20px 20px;
+}
+
+.display{
+  width: 210px;
+  height: 140px;
+  background-color: white;
+  margin: 0 auto;
+  position: relative;
+}
+
+.juices{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.juice{
+  position: relative;
+}
+
+/* =========缶ここから========= */
+.can {
+	width: 50px;
+	height: 75px;
+	position: relative;
+}
+
+.can::before {
+	content: "";
+  width: 50px;
+  height: 15px;
+  position: absolute;
+  top: -8px;
+  border-radius: 50%;
+  background: rgb(187, 187, 187);
+}
+
+.can::after {
+	content: "";
+  width: 50px;
+  height: 15px;
+  position: absolute;
+  top: 68px;
+  border-radius: 50%;
+}
+
+.cola{
+	background: red;
+}
+.cola::after{
+  background: red;
+}
+.pocari{
+	background: blue;
+}
+.pocari::after{
+  background: blue;
+}
+.lemon{
+	background: yellow;
+}
+.lemon::after{
+  background: yellow;
+}
+/* =========缶ここまで========== */
+
+/* =========ラベルここから========== */
+.label {
+	width: 49px;
+	height: 20px;
+	position: relative;
+  top: 28px;
+	background: white;
+  margin: 0 auto;
+}
+.label::before {
+	content: "";
+  width: 49px;
+  height: 15px;
+  position: absolute;
+  top: -8px;  
+  border-radius: 50%;
+}
+.label::after {
+	content: "";
+  width: 49px;
+  height: 15px;
+  position: absolute;
+  top: 12px;
+  border-radius: 50%;
+  background: white;
+}
+.cola-label::before{
+  background: red;
+}
+.pocari-label::before{
+  background: blue;
+}
+.lemon-label::before{
+  background: yellow;
+}
+.label-name{
+  font-size: 12px;
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  left: 7px;
+}
+/* =========ラベルここまで========== */
+
+/* =========値段ここから========= */
+.price-tag{
+  background-color: black;
+  color: white;
+  width: 32px;
+  font-size: 10px;
+  text-align: center;
+  margin: 12px auto 0;
+}
+/* =========値段ここまで========= */
+
+/* =========ジュースボタンここから========= */
+.juice-btn{
+  width: 15px;
+  height: 15px;
+  background: black;
+  position: absolute;
+  bottom: -44px;
+  left: 16px;
+  border-radius: 50px;
+  border: 2px solid #31f231;
+  cursor: pointer;
+}
+/* =========ジュースボタンここまで========= */
+
+/* =========投入口ここから========= */
+.input{
+  display: flex;
+  justify-content: right;
+  margin: 40px 0 0;
+  align-items: center;
+}
+.reset-btn{
+  background-color: #d7d7d7;
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 8px
+}
+.inlet-wrapper{
+  background: #d7d7d7;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inlet{
+  background: black;
+  width: 12px;
+  height: 2px
+}
+/* =========投入口ここまで========= */
+
+.arrow-wrapper{
+  display: flex;
+  justify-content: right;
+  margin: 4px 0;
+}
+.arrow{
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #000000;
+}
+
+.input-price-wrapper{
+  display: flex;
+  justify-content: right;
+}
+.input-price{
+  background-color: white;
+}
+
+.outlet{
+  background: #d1d0d0;
+  height: 52px;
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+/* =========コインここから========= */
+.coins{
+  display: flex;
+  justify-content: space-around;
+  padding: 0 50%;
+  margin-top: 10px;
+}
+.coin{
+  width: 60px;
+  cursor: pointer;
+}
+/* =========コインここまで========= */
